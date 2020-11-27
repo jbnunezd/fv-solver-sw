@@ -8,10 +8,39 @@ INFO_LINKING=\e[1;34m[LINKING]\e[0m
 #--------------------------------------------------------------------------------------------------#
 #
 #--------------------------------------------------------------------------------------------------#
-FC=gfortran
+COMPILER=GNU_DEBUG
 #--------------------------------------------------------------------------------------------------#
-FCFLAGS  = -xf95-cpp-input -fdefault-real-8 -fdefault-double-8 -fbackslash
-FLFLAGS  = -fdefault-real-8 -fbackslash
+ifeq ($(findstring GNU,$(COMPILER)),GNU)
+  FC=gfortran
+  INSTRUCTION=-march=native
+  FCFLAGS  = -xf95-cpp-input -cpp -fdefault-real-8 -fdefault-double-8 -fbackslash
+  FLFLAGS  = -fdefault-real-8 -fbackslash
+  ifeq ($(findstring DEBUG,$(COMPILER)),DEBUG)
+    FCFLAGS  += -g -O0 -ggdb3 -fbounds-check -finit-real=nan -fbacktrace
+    FLFLAGS  += -g -O0 -ggdb3 -fbounds-check -finit-real=nan -fbacktrace
+  else
+    FCFLAGS  += -O3 $(INSTRUCTION)
+    FLFLAGS  += -O3 $(INSTRUCTION)
+  endif
+endif
+#--------------------------------------------------------------------------------------------------#
+ifeq ($(findstring INTEL,$(COMPILER)),INTEL)
+  FC=ifort
+  INSTRUCTION=-O3 -xCORE-AVX2 -ip
+  FCFLAGS  =-fpp -allow nofpp_comments -assume bscc -r8 -i4 -traceback -warn all
+  FLFLAGS  =-r8 -i4 -traceback -assume bscc
+  ifeq ($(findstring DEBUG,$(COMPILER)),DEBUG)
+    FCFLAGS  +=-g -O0 -fpe0 -traceback
+    FCFLAGS  +=-check all,noarg_temp_created,noformat,nooutput_conversion,pointer,bounds,uninit
+    FCFLAGS  +=-init=snan -init=arrays
+    FLFLAGS  +=-g -O0
+  else
+    FCFLAGS  +=$(INSTRUCTION)
+    FLFLAGS  +=$(INSTRUCTION)
+  endif
+endif
+#--------------------------------------------------------------------------------------------------#
+#
 #--------------------------------------------------------------------------------------------------#
 AR       =ar
 AR_FLAGS =clr
