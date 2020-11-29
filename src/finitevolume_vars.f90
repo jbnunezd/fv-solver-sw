@@ -33,7 +33,16 @@ REAL,ALLOCATABLE    :: FX(:,:,:)
 REAL,ALLOCATABLE    :: FY(:,:,:)
 REAL,ALLOCATABLE    :: WM(:,:,:,:)
 REAL,ALLOCATABLE    :: WP(:,:,:,:)
+REAL,ALLOCATABLE    :: FluxX(:,:,:,:)
+REAL,ALLOCATABLE    :: FluxY(:,:,:,:)
 LOGICAL,ALLOCATABLE :: Ind(:,:,:)
+
+REAL,ALLOCATABLE    :: K0(:,:,:)
+REAL,ALLOCATABLE    :: K1(:,:,:)
+REAL,ALLOCATABLE    :: K2(:,:,:)
+REAL,ALLOCATABLE    :: K3(:,:,:)
+REAL,ALLOCATABLE    :: K4(:,:,:)
+REAL,ALLOCATABLE    :: K5(:,:,:)
 
 INTEGER,PARAMETER   :: UNIT_FILE = 123
 INTEGER             :: WhichOutput
@@ -63,7 +72,7 @@ INTEGER,PARAMETER   :: WENOEXP = 2.0
 REAL,PARAMETER      :: PI           = ACOS(-1.0)
 REAL,PARAMETER      :: EPS          = 1.0E-08
 REAL,PARAMETER      :: ACCURACY     = 1.0E-14
-REAL,PARAMETER      :: MIN_DEPTH    = 1.0E-03
+REAL,PARAMETER      :: MIN_DEPTH    = 1.0E-06
 REAL,PARAMETER      :: MIN_SPEED    = 1.0E-14
 REAL,PARAMETER      :: MIN_TIMESTEP = 1.0E-08
 

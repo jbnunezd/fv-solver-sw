@@ -85,6 +85,12 @@ USE MOD_FiniteVolume2D_vars,ONLY: nVar
 USE MOD_FiniteVolume2D_vars,ONLY: dt
 USE MOD_FiniteVolume2D_vars,ONLY: nElemsX
 USE MOD_FiniteVolume2D_vars,ONLY: nElemsY
+USE MOD_FiniteVolume2D_vars,ONLY: K0
+USE MOD_FiniteVolume2D_vars,ONLY: K1
+USE MOD_FiniteVolume2D_vars,ONLY: K2
+USE MOD_FiniteVolume2D_vars,ONLY: K3
+USE MOD_FiniteVolume2D_vars,ONLY: K4
+USE MOD_FiniteVolume2D_vars,ONLY: K5
 !-------------------------------------------------------------------------------!
 IMPLICIT NONE
 !-------------------------------------------------------------------------------!
@@ -94,12 +100,6 @@ REAL,INTENT(IN) :: t
 !-------------------------------------------------------------------------------!
 ! >> LOCAL VARIABLES                                                            !
 !-------------------------------------------------------------------------------!
-REAL            :: K0(1:nVar,1:nElemsX,1:nElemsY)
-REAL            :: K1(1:nVar,1:nElemsX,1:nElemsY)
-REAL            :: K2(1:nVar,1:nElemsX,1:nElemsY)
-REAL            :: K3(1:nVar,1:nElemsX,1:nElemsY)
-REAL            :: K4(1:nVar,1:nElemsX,1:nElemsY)
-REAL            :: K5(1:nVar,1:nElemsX,1:nElemsY)
 REAL            :: tStage
 INTEGER         :: ii, jj
 !-------------------------------------------------------------------------------!

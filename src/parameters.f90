@@ -46,7 +46,7 @@ IMPLICIT NONE
 CHARACTER(LEN=255) :: ErrorMessage
 !-------------------------------------------------------------------------------!
 
-InitialCondition = 211
+InitialCondition = 212
 
 SELECT CASE(InitialCondition)
   CASE(200) ! Constant State
@@ -60,16 +60,16 @@ SELECT CASE(InitialCondition)
   CASE(211) ! Dam Break
     TEnd    = 5.0
     Gravity = 9.8
-    nElemsX = 100
-    nElemsY = 100
+    nElemsX = 600
+    nElemsY = 600
     MESH_X0 = (/0.0,0.0/)
     MESH_X1 = (/40.0,40.0/)
     BoundaryConditionsType = (/2,2,2,2/)
   CASE(212) ! Circular Dam Break
     TEnd    = 5.0
     Gravity = 9.8
-    nElemsX = 100
-    nElemsY = 100
+    nElemsX = 600
+    nElemsY = 600
     MESH_X0 = (/0.0,0.0/)
     MESH_X1 = (/40.0,40.0/)
     BoundaryConditionsType = (/2,2,2,2/)
